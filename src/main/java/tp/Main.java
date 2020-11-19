@@ -1,11 +1,11 @@
 package tp;
 
-import tp.consumer_producter_client.ProducerDeuxConsumerTrois;
+import tp.consumer_producter_client.ProducerTroisConsumerDeux;
 
 public class Main{
 
         public Main() throws InterruptedException {
-            ProducerDeuxConsumerTrois c2p3 = new ProducerDeuxConsumerTrois();
+            ProducerTroisConsumerDeux c2p3 = new ProducerTroisConsumerDeux();
 
             Thread thread = new Thread(c2p3);
             thread.run();

@@ -9,45 +9,24 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class ProducerDeuxConsumerTrois implements Runnable {
+public class ProducerTroisConsumerDeux implements Runnable {
 
     private Producer<String, String> producer;
     private Consumer<String, String> consumer;
-    private String topicProducer = "Topic2";
-    private String topicConsumer = "Topic3";
+    private String topicProducer = "Topic3";
+    private String topicConsumer = "Topic2";
     private Scanner scanner;
 
-    public ProducerDeuxConsumerTrois() {
+    public ProducerTroisConsumerDeux() {
         producer = ProducerFactory.createProducer();
         consumer = ConsumerFactory.createConsumer();
         consumer.subscribe(Collections.singleton(topicConsumer));
-        scanner = new Scanner(System.in);
     }
 
     @Override
     public synchronized void run() {
-        String cmd;
 
-        boolean attendReponse = false;
         while (!Thread.interrupted()){
-//            Console console = System.console();
-//            cmd = console.readLine("Entrer votre commande: ");
-
-            System.out.print("Entrer votre commande: ");
-            cmd = scanner.nextLine();
-            ProducerRecord<String, String> record = new ProducerRecord<String, String>(topicProducer, cmd);
-            producer.send(record, new ProducerCallBack());
-            attendReponse = true;
-            System.out.println("-----------Réponse-----------");
-//            while (attendReponse){
-//                ConsumerRecords<String, String> records = consumer.poll(100);
-//                if(records != null && !records.isEmpty()){
-//                    attendReponse = false;
-//                    records.forEach(message -> {
-//                        System.out.println(message.toString());
-//                    });
-//                }
-//            }
 
         }
         scanner.close();
@@ -62,7 +41,7 @@ public class ProducerDeuxConsumerTrois implements Runnable {
         }
     }
 
-    private boolean menu(String cmd){
+    private String sqlCommand(String cmd){
         String[] cmd_split = cmd.split(" ");
         switch (cmd_split[0]){
             case "Get_global_values":
@@ -72,7 +51,7 @@ public class ProducerDeuxConsumerTrois implements Runnable {
             case "Get_confirmed_avg":
 
         }
-        return true;
+        return "";
     }
 
 }
