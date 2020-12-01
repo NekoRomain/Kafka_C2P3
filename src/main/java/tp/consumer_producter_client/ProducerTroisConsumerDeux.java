@@ -32,34 +32,6 @@ public class ProducerTroisConsumerDeux implements Runnable {
 
             //On récupère la command du topic 2
             ConsumerRecords<String, String> records = consumer.poll(100);
-            if(records != null && !records.isEmpty()){
-                String message = stringStringConsumerRecord.value();
-                String[] message_split = message.split(" ");
-                String result;
-                switch (message_split[0]){
-                    case "get_global_values":
-                        result = database.getGlobal();
-                        break;
-                    case "get_country_values":
-                        result = database.getCountry(message_split[1].toUpperCase());
-                        break;
-                    case "get_confirmed_avg":
-                        result = database.getAvgConfirmed();
-                        break;
-                    case "get_deaths_avg":
-                        result = database.getAvgDeaths();
-                        break;
-                    case "get_countries_deaths_percent":
-                        result = database.getPercentDeaths();
-                        break;
-                    default:
-                        result = "ERRORS:Command not found";
-                        break;
-                }
-                //envoie du résultat sur le topic 3
-                ProducerRecord<String, String> record = new ProducerRecord<String, String>(topicProducer, result);
-                producer.send(record, new ProducerCallBack());
-            }
             records.forEach(stringStringConsumerRecord -> {
                 String message = stringStringConsumerRecord.value();
                 String[] message_split = message.split(" ");
