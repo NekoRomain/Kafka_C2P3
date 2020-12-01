@@ -8,6 +8,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import tp.database.Database;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -29,9 +30,8 @@ public class ProducerTroisConsumerDeux implements Runnable {
     @Override
     public synchronized void run() {
         while (!Thread.interrupted()){
-
             //On récupère la command du topic 2
-            ConsumerRecords<String, String> records = consumer.poll(100);
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             records.forEach(stringStringConsumerRecord -> {
                 String message = stringStringConsumerRecord.value();
                 String[] message_split = message.split(" ");
