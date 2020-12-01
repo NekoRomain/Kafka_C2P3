@@ -21,9 +21,15 @@ public class Database {
         connection = connect();
     }
 
-    private final String url = "jdbc:postgresql://kandula.db.elephantsql.com:5432/pornlkar";
-    private final String user = "pornlkar";
-    private final String password = "mbdpf5meee5IsCGJXyf80q3Gj9-L0lOz";
+    /*PARAMETTRE DE CONNEXION A LA BASE DE DONNEES POSTGRE*/
+    private final String url = "jdbc:postgresql://127.0.0.1:5432/tpkafka";
+    private final String user = "postgres";
+    private final String password = "test";
+
+//    private final String url = "jdbc:postgresql://kandula.db.elephantsql.com:5432/pornlkar";
+//    private final String user = "pornlkar";
+//    private final String password = "mbdpf5meee5IsCGJXyf80q3Gj9-L0lOz";
+
     private static final String SELECT_ALL_QUERY_GLOBAL = "select * from global";
     private static final String SELECT_ALL_QUERY_COUNTRY = "select * from countries where country_code =?";
     private static final String SELECT_ALL_QUERY_CONFIRMED = "select sum(total_confirmed)/count(*) from countries";

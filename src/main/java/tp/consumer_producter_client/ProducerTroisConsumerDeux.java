@@ -61,7 +61,8 @@ public class ProducerTroisConsumerDeux implements Runnable {
                 producer.send(record, new ProducerCallBack());
             });
         }
-
+        consumer.close();
+        producer.close();
     }
 
     private class ProducerCallBack implements Callback {
